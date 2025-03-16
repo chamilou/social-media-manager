@@ -1,0 +1,65 @@
+:root {
+  --background: #121212;
+  --card-bg: #1e1e1e;
+  --text: #ffffff;
+  --border: #333;
+  --highlight: #4caf50;
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+  background: var(--background);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: var(--text);
+}
+
+.title {
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+  color: var(--highlight);
+}
+.chartContainerHome {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  gap: 10px; /* Adjust gap as needed */
+}
+
+.chartContainer {
+  flex: 1; /* This will make each chart container take equal space */
+  margin: 0 0 0 0; /* Adjust margin as needed */
+}
+
+.chart {
+  align-content: center;
+  padding: 15px;
+  background: var(--card-bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.tableContainer {
+  margin-top: 20px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+.table th {
+  background-color: var(--highlight);
+  color: white;
+}

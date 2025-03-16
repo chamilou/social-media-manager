@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                  String               @id @default(cuid())
+  name                String?
+  password            String
+  email               String?              @unique
+  image               String?
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  accounts            Account[]
+  socialMediaAccounts SocialMediaAccount[]
+  posts               Post[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  provider          String // e.g., "google", "twitter", "facebook"
+  providerAccountId String  @unique // Unique ID from OAuth
+  accessToken       String?
+  refreshToken      String?
+  expiresAt         Int?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model SocialMediaAccount {
+  id          String   @id @default(cuid())
+  userId      String
+  platform    String // e.g., "Twitter", "Facebook", "Instagram"
+  username    String
+  profileUrl  String?
+  followers   Int      @default(0)
+  following   Int      @default(0)
+  lastUpdated DateTime @default(now())
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  posts     Post[]
+  analytics Analytics[]
+
+  @@unique([userId, platform])
+}
+
+model Post {
+  id          String             @id @default(cuid())
+  userId      String
+  accountId   String
+  content     String?
+  mediaUrl    String?
+  scheduledAt DateTime?
+  postedAt    DateTime?
+  status      PostStatus         @default(PENDING)
+  user        User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  account     SocialMediaAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+
+  uploadQueue UploadQueue?
+}
+
+enum PostStatus {
+  PENDING
+  POSTED
+  FAILED
+}
+
+model Analytics {
+  id        String             @id @default(cuid())
+  accountId String
+  date      DateTime
+  followers Int
+  likes     Int
+  comments  Int
+  shares    Int
+  mentions  Int
+  account   SocialMediaAccount @relation(fields: [accountId], references: [id], onDelete: Cascade)
+}
+
+model UploadQueue {
+  id          String      @id @default(cuid())
+  postId      String      @unique
+  scheduledAt DateTime
+  status      QueueStatus @default(PENDING)
+  post        Post        @relation(fields: [postId], references: [id], onDelete: Cascade)
+}
+
+enum QueueStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}

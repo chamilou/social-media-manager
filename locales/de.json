@@ -1,0 +1,20 @@
+{
+    "navbar": {
+      "solutions": "Lösungen",
+      "forCompany": "Für Unternehmen",
+      "forIndividual": "Für Einzelpersonen",
+      "analytics": "Analyse",
+      "integrations": "Integrationen",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "tiktok": "TikTok",
+      "pricingPlan": "Preismodell",
+      "blog": "Blog",
+      "dashboard": "Dashboard",
+      "welcome": "Willkommen",
+      "logout": "Abmelden",
+      "login": "Einloggen",
+      "language": "Sprache"
+    }
+  }
+  

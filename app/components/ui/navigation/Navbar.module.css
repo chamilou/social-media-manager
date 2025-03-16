@@ -1,0 +1,112 @@
+:root {
+  --background: #121212;
+  --card-bg: #1e1e1e;
+  --text: #ffffff;
+  --border: #333;
+  --primary: #4caf50;
+  --hover-bg: #333;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: var(--background);
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+}
+
+.companyName {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.menu {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+}
+
+.menu li {
+  position: relative;
+  cursor: pointer;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: var(--text);
+}
+
+.menu li:hover a {
+  color: var(--primary);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 25px;
+  left: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 10px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 150px;
+  z-index: 100;
+}
+
+.dropdownMenu li {
+  padding: 5px;
+}
+
+.dropdownMenu li:hover {
+  background: var(--hover-bg);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.button,
+.login,
+.logout {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.button {
+  background: var(--primary);
+  color: white;
+  text-decoration: none;
+}
+
+.login {
+  background: #007bff;
+  color: white;
+}
+
+.logout {
+  background: #e63946;
+  color: white;
+}
+
+.button:hover,
+.login:hover,
+.logout:hover {
+  opacity: 0.8;
+}
+.languageSelector {
+  margin-right: 15px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 14px;
+}

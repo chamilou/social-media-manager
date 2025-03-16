@@ -1,0 +1,20 @@
+{
+    "navbar": {
+      "solutions": "Решения",
+      "forCompany": "Для компании",
+      "forIndividual": "Для индивидуума",
+      "analytics": "Аналитика",
+      "integrations": "Интеграции",
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "tiktok": "TikTok",
+      "pricingPlan": "Ценовой план",
+      "blog": "Блог",
+      "dashboard": "Панель управления",
+      "welcome": "Добро пожаловать",
+      "logout": "Выйти",
+      "login": "Войти",
+      "language": "Язык"
+    }
+  }
+  
