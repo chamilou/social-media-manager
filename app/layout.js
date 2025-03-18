@@ -18,9 +18,9 @@ export const metadata = {
   description: "Max Media Manager",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params }) {
   return (
-    <html lang="en">
+    <html lang={params.locale}>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <SessionProviderWrapper>
           <Navbar />
@@ -30,9 +30,14 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+
 // RootLayout.js
+
+// import { NextIntlProvider } from "next-intl";
+
 // import { NextIntlClientProvider } from "next-intl";
 // import { Geist, Geist_Mono } from "next/font/google";
+// import { notFound } from "next/navigation";
 // import "./globals.css";
 // import Navbar from "./components/ui/navigation/Navbar";
 // import SessionProviderWrapper from "./providers/SessionProviderWrapper";
@@ -53,26 +58,36 @@ export default function RootLayout({ children }) {
 // };
 
 // export default async function RootLayout({ children, params: { locale } }) {
-//   const effectiveLocale = locale || "en";
 //   let messages;
-
 //   try {
-//     messages = (await import(`@/locales/${effectiveLocale}.json`)).default;
-//   } catch (error) {
-//     console.error(
-//       `Failed to load messages for locale: ${effectiveLocale}`,
-//       error
+//     messages = await import(`@/dictionaries/${locale}.json`).then(
+//       (module) => module.default
 //     );
-//     messages = (await import(`@/locales/en.json`)).default; // Fallback to default locale
+//   } catch (error) {
+//     console.error(`Failed to load messages for locale: ${locale}`, error);
+//     notFound();
 //   }
+//   // const effectiveLocale = locale || "en";
+
+//   // try {
+//   //   messages = (await import(`@/locales/${effectiveLocale}.json`)).default;
+//   // } catch (error) {
+//   //   console.error(
+//   //     `Failed to load messages for locale: ${effectiveLocale}`,
+//   //     error
+//   //   );
+//   //   messages = (await import(`@/locales/en.json`)).default; // Fallback to default locale
+//   // }
 
 //   return (
-//     <html lang={effectiveLocale}>
+//     <html lang={locale}>
 //       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-//         <SessionProviderWrapper>
-//           <Navbar />
-//           {children}
-//         </SessionProviderWrapper>
+//         <NextIntlClientProvider locale={locale} messages={messages}>
+//           <SessionProviderWrapper>
+//             <Navbar />
+//             {children}
+//           </SessionProviderWrapper>
+//         </NextIntlClientProvider>
 //       </body>
 //     </html>
 //   );

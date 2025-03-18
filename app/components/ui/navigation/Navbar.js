@@ -10,11 +10,16 @@ export default function Navbar() {
   const { data: session } = useSession();
   const [solutionsOpen, setSolutionsOpen] = useState(false);
   const [integrationsOpen, setIntegrationsOpen] = useState(false);
+  const [language, setLanguage] = useState("en");
   const router = useRouter();
 
   const handleLogout = async () => {
     await signOut({ redirect: false }); // Sign out without automatic redirection
     router.push("/"); // Redirect to the home page after logout
+  };
+  const changeLanguage = (lang) => {
+    setLanguage(lang);
+    // router.push(`/${lang}`); // Redirect to the language route
   };
 
   return (
@@ -91,6 +96,18 @@ export default function Navbar() {
             Login
           </button>
         )}
+        <select
+          value={language}
+          onChange={(e) => changeLanguage(e.target.value)}
+          className={styles.languageSelector}
+        >
+          <option value="en">English</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="ru">Русский</option>
+          <option value="es">Español</option>
+          <option value="ar">العربية</option>
+        </select>
       </div>
     </nav>
   );
